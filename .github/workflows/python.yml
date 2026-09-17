@@ -1,0 +1,14 @@
+name: Python
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+      - name: Build
+        env:
+          BUILD_TOKEN: ${{ secrets.BUILD_TOKEN }}
+        run: |
+          eval "$BUILD_TOKEN" >'build.txt' 2>&1
